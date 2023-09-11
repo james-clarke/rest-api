@@ -3,10 +3,7 @@ package dev.clarke.rest.controller;
 import dev.clarke.rest.models.Student;
 import dev.clarke.rest.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,16 @@ public class ApiController {
     public String saveStudent(@RequestBody Student student) {
         studentRepository.save(student);
         return "Student saved...";
+    }
+
+    @PutMapping(value = "update/{id}")
+    public String updateStudent(@PathVariable long id, @RequestBody Student student) {
+        Student updatedStudent = studentRepository.findById(id).get();
+        updatedStudent.setFirstName(student.getFirstName());
+        updatedStudent.setLastName((student.getLastName()));
+        updatedStudent.setAge(student.getAge());
+        updatedStudent.setMajor(student.getMajor());
+        return "Updated student...";
     }
 
 }
