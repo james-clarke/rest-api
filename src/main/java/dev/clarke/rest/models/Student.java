@@ -1,11 +1,24 @@
 package dev.clarke.rest.models;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Student {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String firstName;
+
+    @Column
     private String lastName;
+
+    @Column
     private int age;
+
+    @Column
     private String major;
 
     public Long getId() {
