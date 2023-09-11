@@ -29,13 +29,14 @@ public class ApiController {
         return "Student saved...";
     }
 
-    @PutMapping(value = "update/{id}")
+    @PutMapping(value = "/update/{id}")
     public String updateStudent(@PathVariable long id, @RequestBody Student student) {
         Student updatedStudent = studentRepository.findById(id).get();
         updatedStudent.setFirstName(student.getFirstName());
         updatedStudent.setLastName((student.getLastName()));
         updatedStudent.setAge(student.getAge());
         updatedStudent.setMajor(student.getMajor());
+        studentRepository.save(updatedStudent);
         return "Updated student...";
     }
 
