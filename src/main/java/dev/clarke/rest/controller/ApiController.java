@@ -40,4 +40,11 @@ public class ApiController {
         return "Updated student...";
     }
 
+    @DeleteMapping(value = "/delete/{id}")
+    public String deleteStudent(@PathVariable long id) {
+        Student deletedStudent = studentRepository.findById(id).get();
+        studentRepository.delete(deletedStudent);
+        return "Deleted user with id: " + id;
+    }
+
 }
